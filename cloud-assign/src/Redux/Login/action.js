@@ -37,23 +37,7 @@ export const userLogin = (body) => (dispatch) => {
     });
 };
 
-// export const fetchUser = () => (dispatch) => {
-//   dispatch(loginLoading());
-//   return axios
-//     .get(`user/detail`, { withCredentials: true })
-//     .then(({ data }) => {
-//       console.log("data", data);
-//       if (data.success) {
-//         dispatch({
-//           type: ActionTypes.FETCH_USER,
-//           payload: data,
-//         });
-//       }
-//     })
-//     .catch((Err) => {
-//       console.log("errrr fetch user", Err);
-//     });
-// };
+
 
 export const userLogout = () => (dispatch) => {
   const body = {};

