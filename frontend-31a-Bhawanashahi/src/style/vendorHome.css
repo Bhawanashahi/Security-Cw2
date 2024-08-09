@@ -1,0 +1,53 @@
+.vendor-home-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .vendor-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .vendor-nav {
+    background-color: #f8f9fa;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .vendor-nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .vendor-nav ul li {
+    margin: 0 15px;
+  }
+  
+  .vendor-nav ul li a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .vendor-main {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .vendor-overview,
+  .vendor-services,
+  .vendor-contact {
+    margin-bottom: 30px;
+  }
+  
+  .vendor-footer {
+    background-color: #f8f9fa;
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid #ccc;
+  }
+  

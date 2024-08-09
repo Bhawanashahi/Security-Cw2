@@ -1,0 +1,12 @@
+.header-title {
+    font-size: 30px;
+    font-weight: bold;
+    color: black;
+    margin-right: 50px;
+  }
+  
+  .header-title span {
+    font-size: 30px;
+    font-weight: bold;
+    color: #920808;
+  }

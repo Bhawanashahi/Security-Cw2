@@ -1,0 +1,46 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .dashboard-header {
+    background-color: #920808;
+    padding: 20px;
+    color: white;
+    text-align: center;
+  }
+  
+  .dashboard-main {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .booking-stats-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .stat-card {
+    background-color: #f8f9fa;
+    border: 1px solid #920808;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    
+  }
+  
+  .stat-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    
+  }
+  
+  .stat-card p {
+    font-size: 24px;
+    font-weight: bold;
+    
+  }
+  

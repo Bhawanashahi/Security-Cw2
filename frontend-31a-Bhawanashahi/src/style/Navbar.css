@@ -1,0 +1,87 @@
+
+
+
+/* Import the Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Apply the Poppins font to the body */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Style for the first navbar links */
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand,
+.navbar-light .dropdown-toggle {
+  font-size: 20px;
+  font-weight: 500; /* Medium weight */
+}
+
+/* Style for the second navbar links */
+.second-navbar-link {
+  font-size: 25px;
+  font-weight: 700; /* Bold weight */
+
+}
+
+/* Custom styles for search bars */
+.search-service,
+.search-location {
+  height: 60px !important;
+  font-size: 15px;
+  font-weight: 200;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 20px;
+}
+
+
+.search-service {
+  color: #000;
+  width: 250px !important;
+}
+
+.search-location {
+  width: 730px !important;
+}
+
+
+
+.navbar-logo {
+  max-height: 80px;
+  width: auto;
+}
+
+.navbar-logo-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-left: 10px;
+}
+
+/* .navbar-user-dropdown {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+
+}
+ */
+
+
+.navbar-user-dropdown:hover {
+  color: black;
+}
+/* In your CSS file, e.g., styles.css */
+.navbar-user-dropdown {
+  display: flex;
+  align-items: center;
+  color: black;
+}
+
+.navbar-user-dropdown img {
+  margin-bottom: 10px;
+}
+
+.navbar-user-dropdown span {
+  font-size: 14px;
+}

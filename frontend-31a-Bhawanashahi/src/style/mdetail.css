@@ -1,0 +1,228 @@
+.container {
+    margin-top: 20px;
+}
+
+.vendor-image-container {
+    text-align: center;
+}
+
+.vendor-image {
+    width: 500px;
+    height: 460px;
+    object-fit: cover;
+}
+
+.vendor-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.price-estimate {
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #D9D9D9;
+    height: 47px;
+    width: 700px;
+    padding: 0 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.details-container {
+    width: 700px;
+    background-color: #D9D9D9;
+    height: 250px;
+    border-radius: 10px;
+    padding: 15px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+.detail-item {
+    margin-bottom: 15px;
+}
+
+.details-container p {
+    margin: 0;
+    padding: 5px 0;
+}
+
+.book-now {
+    background-color: #920808;
+    border: none;
+    margin-top: 20px;
+}
+
+.book-now:hover {
+    background-color: #0c0a0a;
+}
+
+.photos-section {
+    margin-top: 40px;
+    text-align: center;
+    position: relative;
+}
+
+.photos-section h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-align: left;
+
+}
+
+.photos-section h4::after {
+    content: "";
+    display: block;
+    width: 1400px;
+    height: 1px;
+    background-color: #625F5F;
+    position: absolute;
+    /* left: 50%;
+    transform: translateX(-50%); */
+    top: 30px;
+}
+
+.bookings-section {
+    margin-top: 40px;
+    position: relative;
+}
+
+.bookings-section h4 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.bookings-section h4::after {
+    content: "";
+    display: block;
+    width: 1400px;
+    height: 1px;
+    background-color: #625F5F;
+    position: absolute;
+    /* left: 100%;
+    transform: translateX(-50%); */
+    top: 30px;
+}
+
+.calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.calendar-header button {
+    background-color: #f5f5f5;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.calendar-divider {
+    width: 100%;
+    margin: 10px 0;
+    font-weight:700;
+}
+
+.calendar-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.calendar-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.calendar-day {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+}
+
+.calendar-day.booked {
+    background-color: #920808;
+    color: white;
+}
+
+.calendar-legend {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.calendar-legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0 10px;
+}
+
+.calendar-legend-symbol {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+
+.calendar-legend-symbol.booked {
+    background-color: #920808;
+}
+
+.reviews-section {
+    margin-top: 40px;
+}
+
+.reviews-section h4 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+.reviews-section h4::after{
+    content: "";
+    display: block;
+    width: 1400px;
+    height: 1px;
+    background-color: #625F5F;
+    position: absolute;
+    /* left: 100%;
+    transform: translateX(-50%); */
+    top: 30px;
+
+
+}
+
+.rating {
+    margin-bottom: 20px;
+}
+
+.review {
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.review h5 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.review-rating {
+    color: #f39c12;
+}

@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.profile-container {
+    font-family: 'Poppins', sans-serif;
+}
+
+.profile-header {
+    background-color: #920808;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+}
+
+.profile-header .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-header-info h4, .profile-header-info p {
+    margin: 0;
+}
+
+.profile-header-info h4 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.profile-header-info p {
+    font-size: 16px;
+}
+
+.profile-sidebar {
+    background-color: #F7F7F7;
+    padding: 20px;
+    align-items: flex-start;
+}
+
+.profile-sidebar .list-group-item.active {
+    background-color: #920808;
+    color: white;
+    border: none;
+}
+
+.profile-sidebar .list-group-item {
+    background-color: white;
+    color: black;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.profile-sidebar .list-group-item:hover {
+    background-color: #750606;
+    color: white;
+}
+
+.profile-form {
+    background-color: #F7F7F7;
+    padding: 30px;
+    border: 1px solid #920808;
+    border-radius: 8px;
+    margin: 0 auto;
+    color: black;
+}
+
+.profile-form-content {
+    height: 100%;
+}
+
+.booking-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.booking-item-image {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.booking-item-details {
+    flex-grow: 1;
+    margin-left: 20px;
+}
+
+.booking-item-details h5 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.booking-item-details p {
+    margin: 5px 0;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}

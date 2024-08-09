@@ -1,0 +1,31 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #920808;
+    padding: 20px;
+    position: fixed;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    max-height: 35px;
+    width: auto;
+}
+
+.nav-link-custom {
+    color: black !important;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+    display: block;
+    text-decoration: none;
+}
+
+.nav-link-custom:hover {
+    color: white !important;
+}

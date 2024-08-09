@@ -1,0 +1,60 @@
+
+
+/* Import the Poppins font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Apply the Poppins font to the body */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Style for the first navbar links */
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand,
+.navbar-light .dropdown-toggle {
+  font-size: 20px;
+  font-weight: 500; /* Medium weight */
+}
+
+/* Style for the second navbar links */
+.second-navbar-link {
+  font-size: 20px;
+  font-weight: 700; /* Bold weight */
+}
+
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+  
+} 

@@ -1,0 +1,96 @@
+.container {
+    max-width: 1200px;
+    
+  }
+  
+  .header-title {
+    font-size: 35px;
+    font-weight: bold;
+    color: black;
+  }
+  
+  .header-title span {
+    font-size: 35px;
+    font-weight: bold;
+    color: #920808;
+  }
+
+  .custom-map {
+    border: 1px solid black;
+  border-radius: 10px;
+  }
+  
+  .map-container {
+    margin-top: 30%;
+  }
+  /* Container for the entire form */
+.custom-form-container {
+    margin-top: 23px;
+    margin-left: 50px;
+    border: 2px solid black;
+    border-radius: 10px;
+    height: 600px;
+    width: 532px;
+    
+  }
+  .border-black {
+    border: 2px solid black;
+    border-radius: 10px; /* Optional: for rounded corners */
+  }
+  /* Other existing styles */
+
+
+  
+  
+  /* General styles for input and textarea */
+  .custom-input, .custom-textarea {
+    border-radius: 10px;
+    height: 65px; /* Height for input */
+    width: 500px; /* Width for input */
+    font-size: 18px;
+    font-weight: 300px;
+    padding: 10px;
+    background-color: #D9D9D9; /* Background color for input */
+  }
+  /* Other existing styles */
+
+
+  
+  /* Specific styles for textarea */
+  .custom-textarea {
+    height: auto; /* Keep this for auto height */
+    min-height: 130px; /* Minimum height for textarea */
+  }
+  
+  /* Focus styles for input and textarea */
+  .custom-input:focus, .custom-textarea:focus {
+    box-shadow: none;
+    background-color: #D9D9D9; /* Maintain background color on focus */
+  }
+  
+  /* Styles for the submit button */
+  .btn-submit {
+    background-color: #920808;
+    border: none;
+    border-radius: 20px;
+    height: 50px;
+    width: 50%;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .btn-submit:hover {
+    background-color: #0a0dc8;
+    color: white;
+  }
+  .custom-input, .custom-textarea {
+    color: #444040;
+    margin-bottom: 30px; /* Add margin-bottom to create spacing between text fields */
+  }
+  @media (min-width: 768px) {
+    .map-container {
+      margin-top: 0; /* Remove top margin for larger screens */
+    }
+  }
+ 
