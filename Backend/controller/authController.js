@@ -1,9 +1,8 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
-const Auths = require("../modal/authSchema"); // Make sure this path is correct
+const Auths = require("../model/authSchema"); // Ensure this path is correct
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
-
 
 const authController = {};
 
@@ -23,7 +22,6 @@ authController.login = async (req, res) => {
 
     const isMatch = await bcrypt.compare(password, userLogin.password);
     if (!isMatch) {
-      // Check for failed login attempts and lock account if exceeded
       if (userLogin.loginAttempts >= 3) {
         userLogin.isLocked = true;
         await userLogin.save();
@@ -35,7 +33,6 @@ authController.login = async (req, res) => {
       }
     }
 
-    // Reset login attempts on successful login
     userLogin.loginAttempts = 0;
     token = await userLogin.generateAuthToken();
     res.cookie("jwtoken", token, {
