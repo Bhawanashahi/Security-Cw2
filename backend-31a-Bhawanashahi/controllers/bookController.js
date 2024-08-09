@@ -95,6 +95,14 @@ const deleteBook= async (req, res) => {
             message: "Server error",
         });
     }
+    // Check if the user has reached the maximum login attempts
+if (getLoginAttempts(username) >= MAX_LOGIN_ATTEMPTS) {
+    cache.set(lockoutKey, true, LOCKOUT_DURATION);
+    errorMessage = "Your account is locked. Please try again later.";
+} else {
+    errorMessage = "Invalid username or password.";
+}
+
 };
 
 module.exports = {
