@@ -30,6 +30,7 @@ const Register = () => {
     setPasswordError('');
     setCpasswordError('');
 
+    // Basic field validation
     if (firstName.trim() === '') {
       setFnameError('Firstname is required');
       isValid = false;
@@ -46,13 +47,20 @@ const Register = () => {
       setPhoneError('Phone no is required');
       isValid = false;
     }
+
+    // Password validation
     if (password.trim() === '') {
       setPasswordError('Password is required');
       isValid = false;
     } else if (password.length < 8 || password.length > 12) {
       setPasswordError('Password must be between 8 and 12 characters');
       isValid = false;
+    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*#])[A-Za-z\d@*#]{8,12}/.test(password)) {
+      setPasswordError('Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character (@, *, #)');
+      isValid = false;
     }
+
+    // Confirm password validation
     if (confirmPassword.trim() === '') {
       setCpasswordError('Confirm Password is required');
       isValid = false;
@@ -159,17 +167,17 @@ const Register = () => {
               </Form.Group>
               <Form.Group controlId="formSignupPassword" className="mb-3">
                 <Form.Control
-                  type={password ? 'text' : 'password'}
+                  type="password" // Ensure the password is invisible
                   placeholder="Enter your Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  style={{ fontFamily: 'Poppins', fontSize: '15px', height: '50px', width: '450px', boxShadow: '0 0 5px rgba(186, 186, 186, 0.5)', borderColor: 'black', borderRadius: '10px', marginBottom: '30px',  marginLeft: '60px' }}
+                  style={{ fontFamily: 'Poppins', fontSize: '15px', height: '50px', width: '450px', boxShadow: '0 0 5px rgba(186, 186, 186, 0.5)', borderColor: 'black', borderRadius: '10px', marginBottom: '30px', marginLeft: '60px' }}
                 />
                 {passwordError && <p className="text-danger">{passwordError}</p>}
               </Form.Group>
               <Form.Group controlId="formConfirmPassword" className="mb-3">
                 <Form.Control
-                  type={confirmPassword ? 'text' : 'password'}
+                  type="password" // Ensure the confirm password is invisible
                   placeholder="Enter to Confirm your Password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
