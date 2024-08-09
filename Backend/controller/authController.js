@@ -26,21 +26,7 @@ authController.login = async (req, res) => {
         httpOnly: true,
       });
 
-      if (!isMatch) {
-        res.status(400).json({ error: "Invalid credential" });
-      } else {
-        const userData = await Auths.findOne({ email: email });
-        console.log(userData.role);
-        if (userData.role === "user") {
-          const data = await Auths.findOne({ email: email })
-            .select("role")
-            .populate("userId");
-
-          res.json({
-            success: true,
-            data,
-            message: "user Signin Successfully",
-          });
+      
         } else if (userData.role === "admin") {
           const data = await Auths.findOne({ email: email })
             .select("role")
