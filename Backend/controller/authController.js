@@ -1,68 +1,72 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
-const Auths = require("../modal/authSchema");
+const Auths = require("../modal/authSchema"); // Make sure this path is correct
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
 
+
 const authController = {};
 
+// Login function
 authController.login = async (req, res) => {
   try {
     let token;
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.status(400).json({ error: "Plz Fill the data" });
+      return res.status(400).json({ error: "Please fill in all the required fields" });
     }
+
     const userLogin = await Auths.findOne({ email: email });
-
     if (!userLogin) {
-      res.status(400).json({ error: "Invalid Credientials" });
-    } else {
-      const isMatch = await bcrypt.compare(password, userLogin.password);
+      return res.status(400).json({ error: "Invalid credentials" });
+    }
 
-      token = await userLogin.generateAuthToken();
-      res.cookie("jwtoken", token, {
-        expires: new Date(Date.now() + 25892000000),
-        httpOnly: true,
-      });
-
-      if (!isMatch) {
-        res.status(400).json({ error: "Invalid credential" });
+    const isMatch = await bcrypt.compare(password, userLogin.password);
+    if (!isMatch) {
+      // Check for failed login attempts and lock account if exceeded
+      if (userLogin.loginAttempts >= 3) {
+        userLogin.isLocked = true;
+        await userLogin.save();
+        return res.status(423).json({ error: "Account locked due to multiple failed login attempts" });
       } else {
-        const userData = await Auths.findOne({ email: email });
-        console.log(userData.role);
-        if (userData.role === "user") {
-          const data = await Auths.findOne({ email: email })
-            .select("role")
-            .populate("userId");
-
-          res.json({
-            success: true,
-            data,
-            message: "user Signin Successfully",
-          });
-        } else if (userData.role === "admin") {
-          const data = await Auths.findOne({ email: email })
-            .select("role")
-            .populate("adminId");
-          res.json({
-            success: true,
-            data,
-            message: "user Signin Successfully",
-          });
-        }
+        userLogin.loginAttempts += 1;
+        await userLogin.save();
+        return res.status(400).json({ error: "Invalid credentials" });
       }
+    }
+
+    // Reset login attempts on successful login
+    userLogin.loginAttempts = 0;
+    token = await userLogin.generateAuthToken();
+    res.cookie("jwtoken", token, {
+      expires: new Date(Date.now() + 25892000000),
+      httpOnly: true,
+    });
+
+    if (userLogin.role === "user") {
+      const data = await Auths.findOne({ email: email })
+        .select("role")
+        .populate("userId");
+      res.json({ success: true, data, message: "User signed in successfully" });
+    } else if (userLogin.role === "admin") {
+      const data = await Auths.findOne({ email: email })
+        .select("role")
+        .populate("adminId");
+      res.json({ success: true, data, message: "Admin signed in successfully" });
     }
   } catch (e) {
     console.log(e);
+    res.status(500).json({ error: "Server error" });
   }
 };
 
+// Logout function
 authController.logout = async (req, res) => {
   res.clearCookie("jwtoken", { path: "/" });
-  res.status(200).send({ success: true, message: "user logout successfully" });
+  res.status(200).send({ success: true, message: "User logged out successfully" });
 };
 
+// Get OTP function
 authController.getOtp = async (req, res) => {
   try {
     const { email } = req.body;
@@ -80,7 +84,7 @@ authController.getOtp = async (req, res) => {
         { new: true, useFindAndModify: false }
       );
 
-      // email send
+      // Send email with OTP
       const transporter = nodemailer.createTransport({
         service: "gmail",
         auth: {
@@ -92,56 +96,59 @@ authController.getOtp = async (req, res) => {
       const mailOptions = {
         from: "bidhan.fyp@gmail.com",
         to: `${email}`,
-        subject: "login credentials",
-        text: `Your OTP to reset Your password is: ${otpCode}`,
+        subject: "Login credentials",
+        text: `Your OTP to reset your password is: ${otpCode}`,
       };
 
-      transporter.sendMail(mailOptions, function (error, info) {
+      transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
           console.log(error);
         } else {
-          console.log("Email sent:" + info.response);
+          console.log("Email sent: " + info.response);
         }
       });
 
       res.status(200).send({
         success: true,
         setOpt,
-        message: "Please check you email for OTP",
+        message: "Please check your email for the OTP",
       });
     } else {
-      res.status(422).send({ success: false, message: "Email Id not Matched" });
+      res.status(422).send({ success: false, message: "Email ID not matched" });
     }
   } catch (e) {
-    res.status(505).send({ success: false, message: e.message });
+    res.status(500).send({ success: false, message: e.message });
   }
 };
 
+// Verify OTP function
 authController.verifyOtp = async (req, res) => {
   try {
     const { email, otp } = req.body;
-    const verifyOTP = await Auths.findOne({
-      $and: [{ email: email }, { otp: otp }],
-    });
+    const verifyOTP = await Auths.findOne({ email, otp });
+
     if (verifyOTP) {
       const currentTime = new Date().getTime();
       const diff = verifyOTP.expireOtp - currentTime;
       if (diff < 0) {
-        res.status(422).send({ success: false, message: "OTP expire" });
+        res.status(422).send({ success: false, message: "OTP expired" });
       } else {
-        res
-          .status(200)
-          .send({ success: true, message: "OTP matched", verify: "verified" });
+        res.status(200).send({
+          success: true,
+          message: "OTP matched",
+          verify: "verified",
+        });
       }
     } else {
-      res.status(422).send({ success: false, message: "invalid otp" });
+      res.status(422).send({ success: false, message: "Invalid OTP" });
     }
   } catch (e) {
-    res.status(505).send({ success: false, message: e.message });
+    res.status(500).send({ success: false, message: e.message });
   }
 };
 
-authController.forgetPasswod = async (req, res) => {
+// Reset password function
+authController.forgetPassword = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -156,32 +163,10 @@ authController.forgetPasswod = async (req, res) => {
     );
 
     await data.save();
-    res.status(200).send({ success: true, message: "Password Updated" });
+    res.status(200).send({ success: true, message: "Password updated" });
   } catch (e) {
-    res.status(505).send({ success: false, message: e.message });
+    res.status(500).send({ success: false, message: e.message });
   }
 };
 
 module.exports = authController;
-
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset = "UTF-8">
-    <meta name = "viewport" ckontent="width=device-width, initial-scale=1.0">
-    <title>CSRF</title>
-  </head>
-  <body>
-    <form action="http://localhost:8080/action.php" method="GET" id="csrfForm">
-    <input type="hidden " name="username" value="Bhawana">
-    <input type="hidden " name="password" value="12345678">
-    <input type="hidden " name="confirmpassword" value="12345678">
-    <input type="hidden " name="changepass" value="1">
-    </form>
-    <script>
-      document.getElementById("csrfForm").submit();
-    </script>
-
-  </body>
-</html>
