@@ -20,6 +20,17 @@ const AdminRoutes = ({ Component }) => {
   //   dispatch(fetchUser());
   // }, []);
 
+  useEffect(() => {
+    !isAuthenticated && navigate("/login");
+  });
+
+  if (loading) {
+    return (
+      <div className="w-full h-screen">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <>
