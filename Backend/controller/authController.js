@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
-const Auths = require("../model/authSchema"); // Ensure this path is correct
+const Auths = require("../modal/authSchema"); // Ensure this path is correct
 const EMAIL = process.env.EMAIL;
 const PASSWORD = process.env.PASSWORD;
 
