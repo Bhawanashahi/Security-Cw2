@@ -5,6 +5,32 @@ import { createUserApi } from '../apis/Api';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
 import '../style/register.css';
 
+// List of common passwords and keywords to check against
+const commonPasswords = [
+  'password', '123456', '123456789', 'qwerty', 'abc123', 'password1@', '12345678', '12345'
+];
+
+const keywords = [
+  'admin', 'user', 'password', 'name', 'email', 'phone'
+];
+
+const validatePassword = (password) => {
+  // Basic password validation
+  if (password.length < 8 || password.length > 12) {
+    return 'Password must be between 8 and 12 characters';
+  }
+  if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*#])[A-Za-z\d@*#]{8,12}/.test(password)) {
+    return 'Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character (@, *, #)';
+  }
+  if (commonPasswords.includes(password.toLowerCase())) {
+    return 'Password is too common';
+  }
+  if (keywords.some(keyword => password.toLowerCase().includes(keyword))) {
+    return 'Password contains personal information';
+  }
+  return '';
+};
+
 const Register = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -49,14 +75,12 @@ const Register = () => {
     }
 
     // Password validation
+    const passwordValidationError = validatePassword(password);
     if (password.trim() === '') {
       setPasswordError('Password is required');
       isValid = false;
-    } else if (password.length < 8 || password.length > 12) {
-      setPasswordError('Password must be between 8 and 12 characters');
-      isValid = false;
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@*#])[A-Za-z\d@*#]{8,12}/.test(password)) {
-      setPasswordError('Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character (@, *, #)');
+    } else if (passwordValidationError) {
+      setPasswordError(passwordValidationError);
       isValid = false;
     }
 
