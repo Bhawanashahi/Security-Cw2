@@ -3,6 +3,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createUserApi } from '../apis/Api';
 import { Container, Row, Col, Form, Button, Image } from 'react-bootstrap';
+import crypto from 'crypto';
+
+ // Import crypto module for password generation
 import '../style/register.css';
 
 // List of common passwords and keywords to check against
@@ -13,6 +16,10 @@ const commonPasswords = [
 const keywords = [
   'admin', 'user', 'password', 'name', 'email', 'phone'
 ];
+
+const generateSecurePassword = () => {
+  return crypto.randomBytes(6).toString('base64').replace(/[^a-zA-Z0-9]/g, '@').slice(0, 12);
+};
 
 const validatePassword = (password) => {
   // Basic password validation
@@ -81,6 +88,9 @@ const Register = () => {
       isValid = false;
     } else if (passwordValidationError) {
       setPasswordError(passwordValidationError);
+      // Suggest a secure password if the current one is invalid
+      const suggestedPassword = generateSecurePassword();
+      toast.warn(`Password is not secure. Consider using: ${suggestedPassword}`);
       isValid = false;
     }
 
@@ -191,18 +201,18 @@ const Register = () => {
               </Form.Group>
               <Form.Group controlId="formSignupPassword" className="mb-3">
                 <Form.Control
-                  type="password" // Ensure the password is invisible
-                  placeholder="Enter your Password"
+                  type="password"
+                  placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   style={{ fontFamily: 'Poppins', fontSize: '15px', height: '50px', width: '450px', boxShadow: '0 0 5px rgba(186, 186, 186, 0.5)', borderColor: 'black', borderRadius: '10px', marginBottom: '30px', marginLeft: '60px' }}
                 />
                 {passwordError && <p className="text-danger">{passwordError}</p>}
               </Form.Group>
-              <Form.Group controlId="formConfirmPassword" className="mb-3">
+              <Form.Group controlId="formSignupConfirmPassword" className="mb-3">
                 <Form.Control
-                  type="password" // Ensure the confirm password is invisible
-                  placeholder="Enter to Confirm your Password"
+                  type="password"
+                  placeholder="Enter your Confirm password"
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   style={{ fontFamily: 'Poppins', fontSize: '15px', height: '50px', width: '450px', boxShadow: '0 0 5px rgba(186, 186, 186, 0.5)', borderColor: 'black', borderRadius: '10px', marginBottom: '30px', marginLeft: '60px' }}
@@ -210,19 +220,19 @@ const Register = () => {
                 {cpasswordError && <p className="text-danger">{cpasswordError}</p>}
               </Form.Group>
               <Button
+                className="mb-3"
                 variant="primary"
                 type="submit"
-                style={{ fontFamily: 'Poppins', fontWeight: 'bold', fontSize: '25px', width: '250px', height: '50px', backgroundColor: '#920808', border: 'none', marginLeft: '143px', display: 'block', margin: '0 auto', borderRadius:'20px' }}
+                style={{ fontFamily: 'Poppins', fontSize: '18px', height: '50px', width: '450px', borderColor: 'black', borderRadius: '10px', marginLeft: '60px', marginBottom: '20px' }}
                 onClick={handleSubmit}
               >
                 Sign Up
               </Button>
-              <Form.Text className="text-muted mt-2" style={{ fontSize: '15px', color: 'black', marginLeft: '160px' }}>
-                Already have an account?{' '}
-                <Link to="/login" style={{ color: '#920808', fontFamily: 'Poppins', marginLeft: '0px' }}>
-                  Login
-                </Link>
-              </Form.Text>
+              <div className="text-center">
+                <span style={{ fontFamily: 'Poppins', fontSize: '15px' }}>
+                  Already have an account? <Link to="/" style={{ color: '#FF7F50' }}>Sign In</Link>
+                </span>
+              </div>
             </Form>
           </Col>
         </Row>
