@@ -27,13 +27,6 @@ adminController.addAdmin = async (req, res) => {
     return res.status(422).json({ error: "Plz Fill all mandatory fields" });
   }
 
-  try {
-    const response = await Admin.findOne({ email: email });
-
-    if (response) {
-      return res.status(422).json({ error: "Email already exist" });
-    }
-
     try {
       // save user info
       const admin = new Admin({
