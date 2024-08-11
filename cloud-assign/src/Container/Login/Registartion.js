@@ -31,8 +31,7 @@ const Registartion = () => {
     userRole: "",
     password: "",
   };
-
-  // Define Yup validation schema
+  const commonWords = ["password", "123456", "qwerty", "name", "admin", "user"];
   const validationSchema = Yup.object({
     password: Yup.string()
       .min(8, "Password must be 8-12 characters")
@@ -41,9 +40,24 @@ const Registartion = () => {
         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
         "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
       )
+      .notOneOf(
+        commonWords,
+        "Password is too common or contains easily guessed words. Please choose a stronger password."
+      )
+      .test(
+        "personal-info-check",
+        "Password should not contain personal information (first name, last name, or email)",
+        function(value) {
+          const { firstName, lastName, email } = this.parent;
+          const personalInfo = [firstName, lastName, email.split("@")[0]];
+          return !personalInfo.some(info => value.includes(info));
+        }
+      )
       .required("Password is required"),
     // Add other field validations if needed
   });
+  
+  
 
   const onSubmit = (values, onSubmitProps) => {
     const formData = new FormData();
