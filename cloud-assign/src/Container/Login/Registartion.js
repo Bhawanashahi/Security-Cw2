@@ -71,12 +71,6 @@ const Registartion = () => {
     formData.append("userRole", "user");
     formData.append("password", values.password);
 
-    dispatch(registerUser(formData));
-    setTimeout(() => {
-      onSubmitProps.resetForm({ values: "" });
-      onSubmitProps.setSubmitting(false);
-    }, 1000);
-  };
 
   return (
     <div className="bg-gray-100 px-5 py-24 w-full min-h-screen">
