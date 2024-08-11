@@ -37,6 +37,10 @@ const Registartion = () => {
     password: Yup.string()
       .min(8, "Password must be 8-12 characters")
       .max(12, "Password must be 8-12 characters")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
+        "Password must include at least one uppercase letter, one lowercase letter, one number, and one special character"
+      )
       .required("Password is required"),
     // Add other field validations if needed
   });
