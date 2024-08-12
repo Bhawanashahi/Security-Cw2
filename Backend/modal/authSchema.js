@@ -31,17 +31,8 @@ const authSchema = new mongoose.Schema({
       },
     },
   ],
-  passwordLastChanged: {
+  passwordChangedAt: {
     type: Date,
-    default: Date.now, // Set the default to the current date
+    default: Date.now,
   },
-});
-
-// Hashing password
-authSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    this.password = await bcrypt.hash(this.password, 12);
-    this.passwordLastChanged = Date.now(); // Update the password last changed date
-  }
-  next();
 });
