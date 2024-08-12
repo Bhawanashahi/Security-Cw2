@@ -59,16 +59,7 @@ userController.addUser = async (req, res) => {
 
       await user.save();
 
-      const newUser = await User.findOne({ email: email });
-
-      // save login info
-      const userLogin = new Auths({
-        email: email,
-        password: password,
-        role,
-        userId: newUser._id,
-      });
-
+      
       await userLogin.save();
 
       res
