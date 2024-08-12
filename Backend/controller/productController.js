@@ -49,21 +49,7 @@ productController.getAllProduct = async (req, res) => {
   }
 };
 
-productController.getProductById = async (req, res) => {
-  try {
-    const _id = req.params.id;
-    const data = await Product.findById(_id).populate("category");
-    res.status(200).json({
-      success: true,
-      data,
-      totalData: data.length,
-      msg: "Data get Successfully",
-    });
-  } catch (e) {
-    return res.status(505).json({
-      success: false,
-      message: e.message,
-    });
+
   }
 };
 
