@@ -2,6 +2,7 @@ import { Form, Formik } from "formik";
 import React, { useEffect, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup"; // Import Yup for validation schema
 import Button from "../../Component/Button";
 import FormikControl from "../../Component/Formik/FormikControl";
 import Message from "../../Component/Message/Message";
@@ -30,6 +31,15 @@ const Registartion = () => {
     userRole: "",
     password: "",
   };
+
+  // Define Yup validation schema
+  const validationSchema = Yup.object({
+    password: Yup.string()
+      .min(8, "Password must be 8-12 characters")
+      .max(12, "Password must be 8-12 characters")
+      .required("Password is required"),
+    // Add other field validations if needed
+  });
 
   const onSubmit = (values, onSubmitProps) => {
     const formData = new FormData();
@@ -60,9 +70,14 @@ const Registartion = () => {
         />
       )}
       <h1 className="text-center py-3 text-2xl text-red-300">
-        User registration Form{" "}
+        User registration Form
       </h1>
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validateOnMount>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema} // Apply the validation schema
+        onSubmit={onSubmit}
+        validateOnMount
+      >
         {(formik) => (
           <Form>
             <div className="w-2/3 mx-auto">
@@ -144,7 +159,7 @@ const Registartion = () => {
               </div>
               <div className="mt-5 w-1/5 mx-auto ">
                 <Button
-                  type="button"
+                  type="submit"
                   className="bg-blue-500 py-2 tracking-wide hover:bg-blue-400 font-serif text-white w-full"
                   value="Submit"
                 />
