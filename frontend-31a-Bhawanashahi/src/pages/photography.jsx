@@ -19,13 +19,7 @@ const Photography = () => {
     });
   }, []);
 
-  const handleDetailsClick = (photoId) => {
-    navigate(`/pdetail/${photoId}`);
-  };
-  const handleBookNowClick = () => {
-    navigate(`/book`);
-  };
-
+ 
 
   return (
     <>
