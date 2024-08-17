@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import Footer from '../components/Footer';
 import { Container, Row, Col, Carousel } from 'react-bootstrap';
 import { getAllProductApi } from '../apis/Api';
-import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 import '../style/login.css';
 import HomeBar from '../components/HomeBar';
 
-const Home= () => {
+const Home = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Fetch all products when component mounts
@@ -59,6 +60,7 @@ const Home= () => {
     fontFamily: 'Poppins, sans-serif',
     fontWeight: '300',
     fontSize: '15px',
+    color:'white'
   };
 
   const textUnderOneStop = {
@@ -95,6 +97,10 @@ const Home= () => {
     textDecoration: 'underline',
     fontFamily: 'Poppins, sans-serif',
     fontStyle: 'italic',
+  };
+
+  const handleNavigate = (path) => {
+    navigate(path);
   };
 
   return (
@@ -147,7 +153,7 @@ const Home= () => {
         </p>
         <Row>
           <Col md={6}>
-            <div className="service-card" style={{ ...cardStyle, ...gradientStyles[0] }}>
+            <div className="service-card" style={{ ...cardStyle, ...gradientStyles[0] }} onClick={() => handleNavigate('/photo')}>
               <div className="service-image" style={{ width: '50%', height: '100%', overflow: 'hidden' }}>
                 <img src="/assets/images/sv.png" alt="Photography & Videography" style={imageStyle} />
               </div>
@@ -156,7 +162,7 @@ const Home= () => {
                 <p style={pStyle}>Photography and videography</p>
               </div>
             </div>
-            <div className="service-card" style={{ ...cardStyle, ...gradientStyles[2] }}>
+            <div className="service-card" style={{ ...cardStyle, ...gradientStyles[2] }} onClick={() => handleNavigate('/venue')}>
               <div className="service-image" style={{ width: '50%', height: '100%', overflow: 'hidden' }}>
                 <img src="/assets/images/sp.png" alt="Venue" style={imageStyle} />
               </div>
@@ -167,7 +173,7 @@ const Home= () => {
             </div>
           </Col>
           <Col md={6}>
-            <div className="service-card" style={{ ...cardStyle, ...gradientStyles[1] }}>
+            <div className="service-card" style={{ ...cardStyle, ...gradientStyles[1] }} onClick={() => handleNavigate('/makeup')}>
               <div className="service-image" style={{ width: '50%', height: '100%', overflow: 'hidden' }}>
                 <img src="/assets/images/sm.png" alt="Makeup" style={imageStyle} />
               </div>
@@ -226,117 +232,113 @@ const Home= () => {
         </Row>
       </Container>
       <div style={{
-  width: 'auto',
-  height: '130px',
-  background: 'linear-gradient(to bottom, #570404, #AF4B12)',
-  margin: '20px auto',
-  marginBottom: '0px',
-  position: 'relative', // Ensure positioning context for pseudo-element
-}}>
-  {/* Vertical Line */}
-  <div style={{
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: '500px', // Position the vertical line 500px from the left
-    width: '2px', // Width of the vertical line
-    backgroundColor: '#FFFFFF', // Color of the vertical line
-    margin: '0 auto', // Center the vertical line vertically
-  }}></div>
+        width: 'auto',
+        height: '130px',
+        background: 'linear-gradient(to bottom, #570404, #AF4B12)',
+        margin: '20px auto',
+        marginBottom: '0px',
+        position: 'relative', // Ensure positioning context for pseudo-element
+      }}>
+        {/* Vertical Line */}
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          bottom: 0,
+          left: '500px', // Position the vertical line 500px from the left
+          width: '2px', // Width of the vertical line
+          backgroundColor: '#FFFFFF', // Color of the vertical line
+          margin: '0 auto', // Center the vertical line vertically
+        }}></div>
 
-  {/* Text on the left side */}
-  <div style={{
-    position: 'absolute',
-    left: '100px', // Position text 100px from the left edge
-    top: '50%', // Center vertically
-    transform: 'translateY(-50%)', // Adjust for vertical centering
-    textAlign: 'left', // Align text to the left
-    paddingRight: '20px', // Add padding for spacing
-  }}>
-    <div style={{
-      color: '#EBFF01', // Text color
-      fontSize: '20px', // Font size
-      fontWeight: '600', // Font weight
-    }}>One stop solutions</div>
-    <div style={{
-      fontFamily: 'Poppins, sans-serif', // Font family
-      fontStyle: 'italic', // Italic style
-      fontSize: '30px', // Font size
-      fontWeight: '700', // Font weight
-      color: 'white', // Text color
-    }}>EventEase</div>
-  </div>
+        {/* Text on the left side */}
+        <div style={{
+          position: 'absolute',
+          left: '100px', // Position text 100px from the left edge
+          top: '50%', // Center vertically
+          transform: 'translateY(-50%)', // Adjust for vertical centering
+          textAlign: 'left', // Align text to the left
+          paddingRight: '20px', // Add padding for spacing
+        }}>
+          <div style={{
+            color: '#EBFF01', // Text color
+            fontSize: '20px', // Font size
+            fontWeight: '600', // Font weight
+          }}>One stop solutions</div>
+          <div style={{
+            fontFamily: 'Poppins, sans-serif', // Font family
+            fontStyle: 'italic', // Italic style
+            fontSize: '30px', // Font size
+            fontWeight: '700', // Font weight
+            color: 'white', // Text color
+          }}>EventEase</div>
+        </div>
 
-  {/* Text on the right side */}
-  <div style={{
-    position: 'absolute',
-    left: '520px', // Adjusted position to place text right after the line
-    top: '50%', // Center vertically
-    transform: 'translateY(-50%)', // Adjust for vertical centering
-    textAlign: 'left', // Align text to the left
-    paddingLeft: '20px', // Add padding for spacing
-    display: 'flex', // Use flexbox for aligning buttons in a row
-    alignItems: 'center', // Center items vertically
-  }}>
-    <div style={{
-      color: '#FFE604', // Text color for "ARE YOU A VENDOR?"
-      fontSize: '30px', // Font size
-      fontFamily: 'Poppins, sans-serif', // Font family
-      fontWeight: '700', // Font weight
-      marginRight: '20px', // Add space between text and buttons
-    }}>ARE YOU A VENDOR?
-     <div style={{
-    color: '#FFFFFF', // Text color for "ARE YOU A VENDOR?"
-    fontSize: '20px', // Font size adjusted to medium
-    fontFamily: 'Poppins, sans-serif', // Font family
-    fontWeight: '300', // Font weight
-    marginRight: '20px', // Add space between text and buttons
-  }}>Boost your business with EventEase</div></div>
-   
+        {/* Text on the right side */}
+        <div style={{
+          position: 'absolute',
+          left: '520px', // Adjusted position to place text right after the line
+          top: '50%', // Center vertically
+          transform: 'translateY(-50%)', // Adjust for vertical centering
+          textAlign: 'left', // Align text to the left
+          paddingLeft: '20px', // Add padding for spacing
+          display: 'flex', // Use flexbox for aligning buttons in a row
+          alignItems: 'center', // Center items vertically
+        }}>
+          <div style={{
+            color: '#FFE604', // Text color for "ARE YOU A VENDOR?"
+            fontSize: '30px', // Font size
+            fontFamily: 'Poppins, sans-serif', // Font family
+            fontWeight: '700', // Font weight
+            marginRight: '20px', // Add space between text and buttons
+          }}>ARE YOU A VENDOR?
+            <div style={{
+              color: '#FFFFFF', // Text color for "ARE YOU A VENDOR?"
+              fontSize: '20px', // Font size adjusted to medium
+              fontFamily: 'Poppins, sans-serif', // Font family
+              fontWeight: '300', // Font weight
+              marginRight: '20px', // Add space between text and buttons
+            }}>Boost your business with EventEase</div>
+          </div>
 
-    
-    <button style={{
-      padding: '10px 20px',
-      height:'50px',
-      width:'230px',
-      borderRadius:'10px', // Padding for button
-      fontSize: '25px',
-      fontStyle:'initial', // Font size
-      fontFamily: 'Poppins, sans-serif', // Font family
-      fontWeight: '700',  // Font weight
-      backgroundColor: '#000000', // Background color
-      color: '#FFE604', // Text color
-      border: 'none', // No border
-      cursor: 'pointer',
-      marginLeft: '60px'
-     // Pointer cursor
-    }}>Contact Us>></button>
-    <button style={{
-      height:'50px',
-      width:'230px',
-      borderRadius:'10px',
-      padding: '10px 20px', // Padding for button
-      fontSize: '25px',
-      fontStyle:'initial', // Font size
-      fontFamily: 'Poppins, sans-serif', // Font family
-      fontWeight: '700', // Font weight
-      backgroundColor: '#000000', // Background color
-      color: '#FFE604', // Text color
-      border: 'none', // No border
-      cursor: 'pointer', // Pointer cursor
-      marginLeft: '40px', // Add space between buttons
-    }}>Join Now>></button>
-  </div>
+          <button style={{
+            padding: '10px 20px',
+            height: '50px',
+            width: '230px',
+            borderRadius: '10px', // Padding for button
+            fontSize: '25px',
+            fontStyle: 'initial', // Font size
+            fontFamily: 'Poppins, sans-serif', // Font family
+            fontWeight: '700',  // Font weight
+            backgroundColor: '#000000', // Background color
+            color: '#FFE604', // Text color
+            border: 'none', // No border
+            cursor: 'pointer',
+            marginLeft: '60px',
+            // Pointer cursor
+          }} onClick={() => handleNavigate('/contact')}>Contact Us>></button>
+          <button style={{
+            height: '50px',
+            width: '230px',
+            borderRadius: '10px',
+            padding: '10px 20px', // Padding for button
+            fontSize: '25px',
+            fontStyle: 'initial', // Font size
+            fontFamily: 'Poppins, sans-serif', // Font family
+            fontWeight: '700', // Font weight
+            backgroundColor: '#000000', // Background color
+            color: '#FFE604', // Text color
+            border: 'none', // No border
+            cursor: 'pointer', // Pointer cursor
+            marginLeft: '40px', // Add space between buttons
+          }} onClick={() => handleNavigate('/vendor/register')}>Join Now>></button>
+        </div>
 
-  {/* Content inside the div */}
-  {/* You can add any content or leave it empty based on your needs */}
-</div>
-
-
+        {/* Content inside the div */}
+        {/* You can add any content or leave it empty based on your needs */}
+      </div>
 
       {/* Footer Section */}
       <Footer />
-
     </>
   );
 };

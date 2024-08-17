@@ -7,6 +7,7 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../style/photography.css';
+import HomeBar from "../components/HomeBar";
 
 const Photography = () => {
   const [vendors, setVendors] = useState([]);
@@ -28,7 +29,7 @@ const Photography = () => {
 
   return (
     <>
-      <Navbar />
+      <HomeBar/>
       <div className="photo-container mt-5">
         <div className="row">
           <div className="col-md-3">
