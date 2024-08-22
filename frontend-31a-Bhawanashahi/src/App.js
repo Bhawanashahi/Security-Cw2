@@ -77,7 +77,7 @@ function App() {
     <Router>
       <ToastContainer />
       <Routes>
-      <Route path='/home' element={<HomeBar/>} /> 
+      <Route path='/home' element={<Home/>} /> 
       <Route path='/profile' element={<Profile/>} /> 
       <Route path='/cpw' element={<ChangePassword/>} /> 
       <Route path='/booking' element={<Bookings/>} /> 

@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import '../style/photography.css';
 import HomeBar from "../components/HomeBar";
+import NavBar from "../components/Navbar";
 
 const Photography = () => {
   const [vendors, setVendors] = useState([]);
@@ -29,7 +30,7 @@ const Photography = () => {
 
   return (
     <>
-      <HomeBar/>
+      <NavBar/>
       <div className="photo-container mt-5">
         <div className="row">
           <div className="col-md-3">
@@ -117,3 +118,5 @@ const Photography = () => {
 };
 
 export default Photography;
+
+

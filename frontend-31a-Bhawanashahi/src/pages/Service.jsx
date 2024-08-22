@@ -3,6 +3,7 @@ import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Container, Row, Col, Carousel } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import HomeBar from '../components/HomeBar';
 
 const Service = () => {
   const imageStyle1 = {
